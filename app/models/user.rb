@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
+
   has_many :products, dependent: :destroy
   has_many :offers, dependent: :destroy
   # Include default devise modules. Others available are:

@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 ruby '2.4.3'
 
 gem 'devise'
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
+
 
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
