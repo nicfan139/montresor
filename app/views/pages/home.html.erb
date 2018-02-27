@@ -1,9 +1,10 @@
 <h1>Products</h1>
 <% @products.each do |product| %>
-  <h3><%= product.name %></h3>
+  <h3><%= link_to product.name, product_path(product) %></h3>
   <p><strong>Description:</strong> <%= product.description %></p>
   <p><strong>Username:</strong> <%= product.user.first_name %></p>
   <p><strong>Price:</strong> $<%= product.price %></p>
   <p><strong>Category:</strong> <%= product.category.capitalize %></p>
 <% end %>
 
+<%= link_to "new product", new_product_path %>
