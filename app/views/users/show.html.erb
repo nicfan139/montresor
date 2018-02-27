@@ -1,0 +1,23 @@
+<% products = Product.where(user: current_user) %>
+<h3>My products (<%=products.length%>)</h3>
+<% products.each do |product| %>
+  <p><%= product.name %></p>
+<% end %>
+
+<% ["pending", "accepted", "declined"].each_with_index do |state, index| %>
+  <h3><%= state.capitalize %> offers (<%= @offers[index].length %>)</h3>
+  <% counter = 1 %>
+  <% @offers[index].each do |offer| %>
+    <p><strong><%= counter %>- From:</strong> <%= offer.user.first_name %></p>
+    <% counter += 1 %>
+    <p><strong>Product:</strong> <%= offer.product.name %></p>
+    <p><strong>Description: </strong> <%= offer.description %></p>
+    <% if offer.price %>
+      <p><strong>Price:</strong> <%= offer.price %></p>
+    <% end %>
+    <% if index == 0 %>
+      <%= link_to "Accept", accept_offer_path(offer) %>
+      <%= link_to "Decline", decline_offer_path(offer) %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,36 @@
+<h1>Products</h1>
+<h3><%= @product.name %></h3>
+<% if @product.photo_url %>
+  <%= cl_image_tag @product.photo %>
+<% end %>
+<p><strong>Description:</strong> <%= @product.description %></p>
+<p><strong>Username:</strong> <%= @product.user.first_name %></p>
+<p><strong>Price:</strong> $<%= @product.price %></p>
+<p><strong>Category:</strong> <%= @product.category.capitalize %></p>
+<div>
+  <% if policy(@product).edit? %>
+    <%= link_to "Edit", edit_product_path(@product) %>
+  <% end %>
+  <% if policy(@product).destroy? %>
+    <%= link_to "Delete", product_path(@product), url_options = {method: :delete} %>
+  <% end %>
+</div>
+
+<% if Offer.exists?(user: current_user, product: @product) && @product.user != current_user%>
+  <% offer = Offer.where(user_id: current_user.id, product_id: @product.id).take %>
+  <h3>You sent an offer</h3>
+  <p><strong>Description:</strong> <%= offer.description %></p>
+  <p><strong>Price (optional):</strong> <%= offer.price %></p>
+  <p><strong>Sent:</strong> <%= offer.created_at %></p>
+  <p><strong>State:</strong> <%= offer.state.capitalize %></p>
+  <%= link_to "Remove offer", product_offer_path(@product, offer), url_options = {method: :delete} %>
+  <%= link_to "Edit offer", edit_product_offer_path(@product, offer) %>
+<% elsif @product.user != current_user %>
+<h3>Send an offer</h3>
+  <% offer = Offer.new %>
+  <%= simple_form_for [@product, offer] do |f| %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.submit class: 'main-btn' %>
+  <% end %>
+<% end %>

@@ -1,9 +1,19 @@
 <h1>Products</h1>
 <% @products.each do |product| %>
-  <h3><%= product.name %></h3>
+  <h3><%= link_to product.name, product_path(product) %></h3>
+  <div>
+    <% if policy(product).edit? %>
+      <%= link_to "Edit", edit_product_path(product) %>
+    <% end %>
+    <% if policy(product).destroy? %>
+      <%= link_to "Delete", product_path(product), url_options = {method: :delete} %>
+    <% end %>
+  </div>
+  <% if product.photo_url %>
+    <%= cl_image_tag product.photo %>
+  <% end %>
   <p><strong>Description:</strong> <%= product.description %></p>
   <p><strong>Username:</strong> <%= product.user.first_name %></p>
   <p><strong>Price:</strong> $<%= product.price %></p>
   <p><strong>Category:</strong> <%= product.category.capitalize %></p>
 <% end %>
-

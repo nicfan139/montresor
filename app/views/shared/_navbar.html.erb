@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    TODO LOGO
+    <img src="<%= asset_path 'logo.png' %>" alt="">
   <% end %>
 
   <!-- Right Navigation -->
@@ -10,10 +10,9 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-
+      <%= link_to "New product", new_product_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "My dashboard", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "All products", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
