@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: [ :show ]
   before_action :find_product, only: [ :edit, :update, :destroy, :show ]
 
   def show
