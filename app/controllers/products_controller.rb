@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = current_user.products.build(restaurant_params)
+    @product = current_user.products.build(product_params)
     authorize @product
     @product.save
 
@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
 
   def update
     authorize @product
-    @product.update(restaurant_params)
+    @product.update(product_params)
 
     redirect_to root_path
   end
@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
 
   private
 
-  def restaurant_params
+  def product_params
     params.require(:product).permit(:description, :name, :price, :category, :photo)
   end
 
