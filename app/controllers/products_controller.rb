@@ -14,9 +14,13 @@ class ProductsController < ApplicationController
   def create
     @product = current_user.products.build(product_params)
     authorize @product
-    @product.save
-
-    redirect_to root_path
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to(root_path, notice: 'Registration received.') }
+      else
+        format.html { redirect_to(root_path, alert: 'Sorry! There was a problem with your product creation. Please contact us to sort it out.') }
+      end
+    end
   end
 
   def edit
