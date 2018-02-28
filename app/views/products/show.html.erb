@@ -36,9 +36,14 @@
         <p><strong>Email address:</strong> <%= @product.user.email %></p>
         <p><strong>Phone number:</strong> <%= @product.user.phone_number %></p>
       </div>
-      <% if Offer.exists?(product: @product, state: "accepted") %>
+      <% if Offer.exists?(user: current_user, product: @product, state: "accepted") %>
+        <% offer = Offer.where(user: current_user, product: @product, state: "accepted").take %>
         <div class="white-box">
-          <p style="margin-bottom: 0">Product has been sold</p>
+          <h3>Offer accepted</h3>
+          <p><strong>Description:</strong> <%= offer.description %></p>
+          <p><strong>Price (optional):</strong> <%= offer.price %></p>
+          <p><strong>Sent:</strong> <%= offer.created_at %></p>
+          <p><strong>State:</strong> <%= offer.state.capitalize %></p>
         </div>
       <% elsif Offer.exists?(user: current_user, product: @product) && @product.user != current_user%>
         <% offer = Offer.where(user_id: current_user.id, product_id: @product.id).take %>
@@ -51,7 +56,11 @@
           <%= link_to "Remove offer", product_offer_path(@product, offer), url_options = {method: :delete} %>
           <%= link_to "Edit offer", edit_product_offer_path(@product, offer) %>
         </div>
-        <% elsif @product.user != current_user %>
+      <% elsif Offer.exists?(product: @product, state: "accepted") %>
+        <div class="white-box">
+          <p style="margin-bottom: 0">Product has been sold</p>
+        </div>
+      <% elsif @product.user != current_user %>
         <div class="white-box">
           <h3>Send an offer</h3>
           <% offer = Offer.new %>
