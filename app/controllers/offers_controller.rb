@@ -31,6 +31,9 @@ class OffersController < ApplicationController
   end
 
   def accept
+    Offer.where(product: @offer.product).each do |offer|
+      offer.update(state: "declined")
+    end
     @offer.state = "accepted"
     authorize @offer
     @offer.save

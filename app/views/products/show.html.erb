@@ -38,7 +38,7 @@
       </div>
       <% if Offer.exists?(product: @product, state: "accepted") %>
         <div class="white-box">
-          <p>Product has been sent</p>
+          <p style="margin-bottom: 0">Product has been sold</p>
         </div>
       <% elsif Offer.exists?(user: current_user, product: @product) && @product.user != current_user%>
         <% offer = Offer.where(user_id: current_user.id, product_id: @product.id).take %>
