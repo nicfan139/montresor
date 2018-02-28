@@ -28,8 +28,8 @@
       <p><strong>Phone number:</strong> <%= @product.user.phone_number %></p>
     </div>
     <% if Offer.exists?(user: current_user, product: @product) && @product.user != current_user%>
+      <% offer = Offer.where(user_id: current_user.id, product_id: @product.id).take %>
       <div class="white-box">
-        <% offer = Offer.where(user_id: current_user.id, product_id: @product.id).take %>
         <h3>You sent an offer</h3>
         <p><strong>Description:</strong> <%= offer.description %></p>
         <p><strong>Price (optional):</strong> <%= offer.price %></p>
@@ -37,8 +37,10 @@
         <p><strong>State:</strong> <%= offer.state.capitalize %></p>
         <%= link_to "Remove offer", product_offer_path(@product, offer), url_options = {method: :delete} %>
         <%= link_to "Edit offer", edit_product_offer_path(@product, offer) %>
+      </div>
       <% elsif @product.user != current_user %>
-      <h3>Send an offer</h3>
+      <div class="white-box">
+        <h3>Send an offer</h3>
         <% offer = Offer.new %>
         <%= simple_form_for [@product, offer] do |f| %>
           <%= f.input :price %>
