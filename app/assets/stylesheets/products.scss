@@ -71,30 +71,3 @@ body {
 .description {
   line-height: 1.6;
 }
-
-.icon {
-  background-color: red;
-  width: 20px;
-  height: 20px;
-  font-size: 10px;
-  border-radius:50%;
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  p {
-    margin: 0;
-    color: white;
-    font-weight: bold;
-  }
-}
-
-.avatar-box {
-  position: relative;
-}
-
-.icon-list {
-  position: relative;
-}
