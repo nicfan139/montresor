@@ -6,10 +6,8 @@
 
 <% ["pending", "accepted", "declined"].each_with_index do |state, index| %>
   <h3><%= state.capitalize %> offers (<%= @offers[index].length %>)</h3>
-  <% counter = 1 %>
-  <% @offers[index].each do |offer| %>
-    <p><strong><%= counter %>- From:</strong> <%= offer.user.first_name %></p>
-    <% counter += 1 %>
+  <% @offers[index].each_with_index do |offer, index| %>
+    <p><strong><%= index + 1 %>- From:</strong> <%= offer.user.first_name %></p>
     <p><strong>Product:</strong> <%= offer.product.name %></p>
     <p><strong>Description: </strong> <%= offer.description %></p>
     <% if offer.price %>
