@@ -36,7 +36,11 @@
         <p><strong>Email address:</strong> <%= @product.user.email %></p>
         <p><strong>Phone number:</strong> <%= @product.user.phone_number %></p>
       </div>
-      <% if Offer.exists?(user: current_user, product: @product) && @product.user != current_user%>
+      <% if Offer.exists?(product: @product, state: "accepted") %>
+        <div class="white-box">
+          <p>Product has been sent</p>
+        </div>
+      <% elsif Offer.exists?(user: current_user, product: @product) && @product.user != current_user%>
         <% offer = Offer.where(user_id: current_user.id, product_id: @product.id).take %>
         <div class="white-box">
           <h3>You sent an offer</h3>
