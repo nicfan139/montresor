@@ -16,9 +16,27 @@
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <% if current_user.photo_url %>
-            <%= cl_image_tag current_user.photo, { class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" } %>
+            <div class="avatar-box dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+              <%= cl_image_tag current_user.photo %>
+              <% if Offer.where(product: current_user.products, state: "pending").length > 0 %>
+                <div class="icon">
+                  <p>
+                     <%= Offer.where(product: current_user.products, state: "pending").length %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
           <% else %>
-            <img src="http://www.pvhc.net/img8/dahwcppwhvxerusxpwst.png" alt="" class= "avatar dropdown-toggle" id= "navbar-wagon-menu" data-toggle= "dropdown">
+            <div class="avatar-box dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+              <img src="http://www.pvhc.net/img8/dahwcppwhvxerusxpwst.png" alt="" class= "avatar">
+              <% if Offer.where(product: current_user.products, state: "pending").length > 0 %>
+                <div class="icon">
+                  <p>
+                    <%= Offer.where(product: current_user.products, state: "pending").length %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
