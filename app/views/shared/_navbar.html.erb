@@ -10,9 +10,8 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "New product", new_product_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My dashboard", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "All products", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Sell a product", new_product_path, class: "main-btn" %>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
@@ -23,13 +22,13 @@
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <%= link_to user_path(current_user) do %>
+                <i class="fa fa-user"></i> <%= t(".users", default: "Profile") %>
               <% end %>
             </li>
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
+              <%= link_to edit_user_registration_path(current_user) do %>
+                <i class="fa fa-cog"></i>  <%= t(".edit", default: "Edit") %>
               <% end %>
             </li>
             <li>
@@ -42,7 +41,8 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "main-btn" %>
     <% end %>
   </div>
 
