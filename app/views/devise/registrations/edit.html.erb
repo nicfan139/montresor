@@ -8,7 +8,7 @@
       <%= f.input :first_name, required: true %>
       <%= f.input :last_name, required: true %>
       <%= f.input :phone_number, required: true %>
-      <%= f.input :district, required: true %>
+      <%= f.input :district, required: true, collection: %w('Ahuntsic-Cartierville Anjou Cte-des-NeigesNotre-Dame-de-Grce Lachine LaSalle Le Plateau-Mont-Royal Le Sud-Ouest Lle-BizardSainte-Genevive MercierHochelaga-Maisonneuve Montral-Nord Outremont Pierrefonds-Roxboro Rivire-des-PrairiesPointe-aux-Trembles RosemontLa Petite-Patrie Saint-Laurent Saint-Lonard Verdun Ville-Marie VilleraySaint-MichelParc-Extension') %>
 
       <%= f.input :email, required: true, autofocus: true %>
 
