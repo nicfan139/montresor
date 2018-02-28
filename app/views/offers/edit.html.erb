@@ -1,5 +1,8 @@
-<%= simple_form_for [@product, @offer] do |f| %>
-  <%= f.input :price %>
-  <%= f.input :description %>
-  <%= f.submit class: 'main-btn' %>
-<% end %>
+<div class="form-wrapper">
+  <h1>Modify your offer</h1>
+  <%= simple_form_for [@product, @offer] do |f| %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.submit class: 'main-btn' %>
+  <% end %>
+</div>
