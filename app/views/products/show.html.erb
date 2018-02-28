@@ -1,53 +1,63 @@
-<div class="row">
-  <div class="col-sm-8">
-    <div class="white-box">
-      <h3><%= @product.name %></h3>
-      <% if @product.photo_url %>
-        <%= cl_image_tag @product.photo %>
-      <% end %>
-      <p><strong>Description:</strong> <%= @product.description %></p>
-      <p><strong>Price:</strong> $<%= @product.price %></p>
-      <p><strong>Category:</strong> <%= @product.category.capitalize %></p>
-      <div>
-        <% if policy(@product).edit? %>
-          <%= link_to "Edit", edit_product_path(@product) %>
-        <% end %>
-        <% if policy(@product).destroy? %>
-          <%= link_to "Delete", product_path(@product), url_options = {method: :delete} %>
-        <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="white-box">
+        <h3><%= @product.name %></h3>
+      </div>
+      <div class="white-box">
+        <% if @product.photo_url %>
+            <div class="product-image large-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('<%= cl_image_path @product.photo %>'">
+            </div>
+          <% else %>
+            <div class="product-image large-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('https://picsum.photos/800/500?image=20')">
+            </div>
+          <% end %>
+        </div>
+        <div class="white-box">
+        <p class="description"><strong>Description:</strong> <%= @product.description %></p>
+        <p><strong>Price:</strong> $<%= @product.price %></p>
+        <p><strong>Category:</strong> <%= @product.category.capitalize %></p>
+        <div>
+          <% if policy(@product).edit? %>
+            <%= link_to "Edit", edit_product_path(@product) %>
+          <% end %>
+          <% if policy(@product).destroy? %>
+            <%= link_to "Delete", product_path(@product), url_options = {method: :delete} %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="col-sm-4">
-    <div class="white-box">
-      <h3>About</h3>
-      <p><strong>Seller:</strong> <%= @product.user.first_name.capitalize %> <%= @product.user.last_name.capitalize %></p>
-      <p><strong>District:</strong> <%= @product.user.district.capitalize %></p>
-      <p><strong>Email address:</strong> <%= @product.user.email %></p>
-      <p><strong>Phone number:</strong> <%= @product.user.phone_number %></p>
+    <div class="col-sm-4">
+      <div class="white-box about-desc">
+        <%= cl_image_tag @product.user.photo, { class: "avatar" } %>
+        <h3>About <%= @product.user.first_name.capitalize %></h3>
+        <p><strong>District:</strong> <%= @product.user.district.capitalize %></p>
+        <p><strong>Email address:</strong> <%= @product.user.email %></p>
+        <p><strong>Phone number:</strong> <%= @product.user.phone_number %></p>
+      </div>
+      <% if Offer.exists?(user: current_user, product: @product) && @product.user != current_user%>
+        <% offer = Offer.where(user_id: current_user.id, product_id: @product.id).take %>
+        <div class="white-box">
+          <h3>You sent an offer</h3>
+          <p><strong>Description:</strong> <%= offer.description %></p>
+          <p><strong>Price (optional):</strong> <%= offer.price %></p>
+          <p><strong>Sent:</strong> <%= offer.created_at %></p>
+          <p><strong>State:</strong> <%= offer.state.capitalize %></p>
+          <%= link_to "Remove offer", product_offer_path(@product, offer), url_options = {method: :delete} %>
+          <%= link_to "Edit offer", edit_product_offer_path(@product, offer) %>
+        </div>
+        <% elsif @product.user != current_user %>
+        <div class="white-box">
+          <h3>Send an offer</h3>
+          <% offer = Offer.new %>
+          <%= simple_form_for [@product, offer] do |f| %>
+            <%= f.input :price %>
+            <%= f.input :description %>
+            <%= f.submit class: 'main-btn' %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-    <% if Offer.exists?(user: current_user, product: @product) && @product.user != current_user%>
-      <% offer = Offer.where(user_id: current_user.id, product_id: @product.id).take %>
-      <div class="white-box">
-        <h3>You sent an offer</h3>
-        <p><strong>Description:</strong> <%= offer.description %></p>
-        <p><strong>Price (optional):</strong> <%= offer.price %></p>
-        <p><strong>Sent:</strong> <%= offer.created_at %></p>
-        <p><strong>State:</strong> <%= offer.state.capitalize %></p>
-        <%= link_to "Remove offer", product_offer_path(@product, offer), url_options = {method: :delete} %>
-        <%= link_to "Edit offer", edit_product_offer_path(@product, offer) %>
-      </div>
-      <% elsif @product.user != current_user %>
-      <div class="white-box">
-        <h3>Send an offer</h3>
-        <% offer = Offer.new %>
-        <%= simple_form_for [@product, offer] do |f| %>
-          <%= f.input :price %>
-          <%= f.input :description %>
-          <%= f.submit class: 'main-btn' %>
-        <% end %>
-      </div>
-    <% end %>
   </div>
 </div>

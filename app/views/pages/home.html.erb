@@ -1,19 +1,28 @@
-<h1>Products</h1>
-<% @products.each do |product| %>
-  <h3><%= link_to product.name, product_path(product) %></h3>
-  <div>
-    <% if policy(product).edit? %>
-      <%= link_to "Edit", edit_product_path(product) %>
-    <% end %>
-    <% if policy(product).destroy? %>
-      <%= link_to "Delete", product_path(product), url_options = {method: :delete} %>
-    <% end %>
+<div class="wrapper">
+  <h1>Products</h1>
+  <div class="products">
+    <div class="row">
+      <% @products.each do |product| %>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="white-box">
+          <% if product.photo_url %>
+            <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('<%= cl_image_path product.photo %>'">
+              <p class="category"><%= product.category.upcase %></p>
+            </div>
+          <% else %>
+            <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('https://picsum.photos/800/500?image=20&gravity=center')">
+              <p class="category"><%= product.category.upcase %></p>
+            </div>
+          <% end %>
+          <h3 class="product-title"><%= product.name %></h3>
+          <div class="product-content">
+            <p><strong>Username:</strong> <%= product.user.first_name %></p>
+            <p><strong>Price:</strong> $<%= product.price %></p>
+          </div>
+          <%= link_to "See more", product_path(product), url_options = {class: "main-btn product-btn"} %>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-  <% if product.photo_url %>
-    <%= cl_image_tag product.photo %>
-  <% end %>
-  <p><strong>Description:</strong> <%= product.description %></p>
-  <p><strong>Username:</strong> <%= product.user.first_name %></p>
-  <p><strong>Price:</strong> $<%= product.price %></p>
-  <p><strong>Category:</strong> <%= product.category.capitalize %></p>
-<% end %>
+</div>

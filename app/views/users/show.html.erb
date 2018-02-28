@@ -1,21 +1,52 @@
 <% products = Product.where(user: current_user) %>
-<h3>My products (<%=products.length%>)</h3>
-<% products.each do |product| %>
-  <p><%= product.name %></p>
-<% end %>
 
-<% ["pending", "accepted", "declined"].each_with_index do |state, index| %>
-  <h3><%= state.capitalize %> offers (<%= @offers[index].length %>)</h3>
-  <% @offers[index].each_with_index do |offer, number| %>
-    <p><strong><%= number + 1 %>- From:</strong> <%= offer.user.first_name %></p>
-    <p><strong>Product:</strong> <%= offer.product.name %></p>
-    <p><strong>Description: </strong> <%= offer.description %></p>
-    <% if offer.price %>
-      <p><strong>Price:</strong> <%= offer.price %></p>
+<div class="wrapper">
+  <h1>My products (<%=products.length%>)</h1>
+  <div class="products">
+    <div class="row">
+      <% products.each do |product| %>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="white-box">
+          <% if product.photo_url %>
+            <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('<%= cl_image_path product.photo %>'">
+              <p class="category"><%= product.category.upcase %></p>
+            </div>
+          <% else %>
+            <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('https://picsum.photos/200/300?image=20')">
+              <p class="category"><%= product.category.upcase %></p>
+            </div>
+          <% end %>
+          <h3><%= product.name %></h3>
+          <div class="product-content">
+            <p><strong>Username:</strong> <%= product.user.first_name %></p>
+            <p><strong>Price:</strong> $<%= product.price %></p>
+          </div>
+          <%= link_to "See more", product_path(product), url_options = {class: "main-btn product-btn"} %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <% ["pending", "accepted", "declined"].each_with_index do |state, index| %>
+      <div class="col-xs-12 col-sm-6 col-md-4 text-center">
+        <h3><%= state.capitalize %> offers (<%= @offers[index].length %>)</h3>
+        <% @offers[index].each do |offer| %>
+          <div class="white-box" style="width:80%; margin: 30px auto;">
+            <p><strong>From:</strong> <%= offer.user.first_name %></p>
+            <p><strong>Product:</strong> <%= offer.product.name %></p>
+            <p><strong>Description: </strong> <%= offer.description %></p>
+            <% if offer.price %>
+              <p><strong>Price:</strong> <%= offer.price %></p>
+            <% end %>
+            <% if index == 0 %>
+              <%= link_to "Accept", accept_offer_path(offer) %>
+              <%= link_to "Decline", decline_offer_path(offer) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-    <% if index == 0 %>
-      <%= link_to "Accept", accept_offer_path(offer) %>
-      <%= link_to "Decline", decline_offer_path(offer) %>
-    <% end %>
-  <% end %>
-<% end %>
+  </div>
+
+</div>

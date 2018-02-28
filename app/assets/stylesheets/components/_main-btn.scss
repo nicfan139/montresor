@@ -1,0 +1,19 @@
+.main-btn {
+  padding: 10px 20px;
+  background-color: $purple-site;
+  color: white;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 0.85;
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.product-btn {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
