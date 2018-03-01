@@ -5,8 +5,10 @@
   object-fit: cover;
 }
 
-.about-desc .avatar {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.about-desc {
+  .avatar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 }
