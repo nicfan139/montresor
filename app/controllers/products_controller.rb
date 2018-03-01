@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
 
   def show
     authorize @product
+    @product_owner = @product.user == current_user
+    @offer_accepted = Offer.where(user: current_user, product: @product, state: "accepted").take
+    @product_sold = Offer.where(product: @product, state: "accepted").take
+    @offer_sent = Offer.where(user: current_user, product: @product).take
   end
 
   def new
@@ -14,9 +18,6 @@ class ProductsController < ApplicationController
   def create
     @product = current_user.products.build(product_params)
     authorize @product
-    # @product.save
-
-    # redirect_to root_path
 
     if @product.save
         redirect_to root_path
