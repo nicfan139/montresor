@@ -1,0 +1,6 @@
+<p class="category"><%= product.category.upcase %></p>
+<% if Offer.exists?(product_id: product.id, state: "accepted") %>
+  <div class="sold-icon">
+    SOLD
+  </div>
+<% end %>
