@@ -7,10 +7,20 @@ body {
   position: relative;
 }
 
+/* Main Body and Footer Separation */
 .box-container {
   padding-bottom: 15vh;
 }
 
+
+/* Form Container */
+.form-wrapper {
+  width: 40vw;
+  margin: 20px auto;
+}
+
+
+/* Card Elements */
 .white-box {
   background-color: white;
   padding: 25px;
@@ -82,5 +92,4 @@ body {
   color: white;
   font-weight: bold;
   font-size: 15px;
-
 }
