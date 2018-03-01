@@ -9,7 +9,30 @@
         <%= f.input :first_name, required: true %>
         <%= f.input :last_name, required: true %>
         <%= f.input :phone_number, required: true %>
-        <%= f.input :district, required: true, collection: %w(Ahuntsic-Cartierville Anjou Cte-des-Neiges Notre-Dame-de-Grce Lachine LaSalle LePlateau-Mont-Royal LeSud-Ouest Ile-Bizard Sainte-Genevive Mercier Hochelaga-Maisonneuve Montral-Nord Outremont Pierrefonds-Roxboro Rivire-des-Prairies Pointe-aux-Trembles Rosemont LaPetite-Patrie Saint-Laurent Saint-Lonard Verdun Ville-Marie Villeray-Saint-Michel-Parc-Extension) %>
+        <%= f.input :district, required: true, collection: ["Ahuntsic-Cartierville",
+          "Anjou",
+          "Côte-des-Neiges",
+          "Notre-Dame-de-Grce",
+          "Lachine",
+          "La Salle",
+          "Le Plateau-Mont-Royal",
+          "Le Sud-Ouest",
+          "Ile-Bizard",
+          "Sainte-Genevive",
+          "Mercier",
+          "Hochelaga-Maisonneuve",
+          "Montral-Nord",
+          "Outremont",
+          "Pierrefonds-Roxboro",
+          "Rivire-des-Prairies",
+          "Pointe-aux-Trembles",
+          "Rosemont",
+          "La Petite-Patrie",
+          "Saint-Laurent",
+          "Saint-Lonard",
+          "Verdun",
+          "Ville-Marie",
+          "Villeray-Saint-Michel-Parc-Extension"] %>
 
         <%= f.input :email, required: true, autofocus: true %>
 
