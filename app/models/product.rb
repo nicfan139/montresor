@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   validates :user_id, presence: true
   validates :name, presence: true
   validates :category, presence: true
-  validates :description, length: { maximum: 500, message: "should be less than 500 characters" }
+  validates :description, length: { maximum: 1000, message: "should be less than 1000 characters" }
   validates :price, presence: true, numericality: { less_than_or_equal_to: 99999 }
 
   # ALGOLIA
