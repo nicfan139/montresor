@@ -12,7 +12,7 @@
         <p class="profile-title">Statistics</p>
         <p class="profile-regular">Products: <%= @products.length - @accepted_offers.length %></p>
         <p class="profile-regular">Sales: <%= @sales %></p>
-        <p class="profile-regular">Acceptance rate: <%= @acceptance_rate * 100 %></p>
+        <p class="profile-regular">Acceptance rate: <%= (@acceptance_rate * 100).to_i %>%</p>
         <p class="profile-title">Latest products</p>
         <% @products.first(3).each do |product| %>
           <%= link_to product_path(product), class: "profile-link" do %>
