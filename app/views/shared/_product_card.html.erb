@@ -9,7 +9,9 @@
 <% end %>
 <h3><%= product.name %></h3>
 <div class="product-content">
-  <p><strong>Username:</strong> <%= product.user.first_name %></p>
+  <%= link_to user_path(product.user), class: "user-link font-bigger" do %>
+    <strong>Seller:</strong> <%= product.user.first_name %></p>
+  <% end %>
   <p><strong>Price:</strong> $<%= product.price %></p>
 </div>
 <%= link_to "See more", product_path(product), url_options = {class: "main-btn product-btn"} %>

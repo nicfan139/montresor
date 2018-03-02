@@ -27,13 +27,15 @@
     </div>
 
     <div class="col-sm-4">
-      <div class="white-box about-desc">
-        <%= cl_image_tag @product.user.photo, { class: "avatar" } %>
-        <h3>About <%= @product.user.first_name.capitalize %></h3>
-        <p><strong>District:</strong> <%= @product.user.district.capitalize %></p>
-        <p><strong>Email address:</strong> <%= @product.user.email %></p>
-        <p><strong>Phone number:</strong> <%= @product.user.phone_number %></p>
-      </div>
+      <%= link_to user_path(@product.user), class: "user-link" do %>
+        <div class="white-box about-desc">
+          <%= cl_image_tag @product.user.photo, { class: "avatar" } %>
+          <h3>About <%= @product.user.first_name.capitalize %></h3>
+          <p><strong>District:</strong> <%= @product.user.district.capitalize %></p>
+          <p><strong>Email address:</strong> <%= @product.user.email %></p>
+          <p><strong>Phone number:</strong> <%= @product.user.phone_number %></p>
+        </div>
+      <% end %>
 
       <% unless @product_owner %>
         <% if @offer_accepted %>

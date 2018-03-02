@@ -12,6 +12,17 @@ body {
   padding-bottom: 15vh;
 }
 
+.user-link {
+  color: rgb(50, 50, 50);
+  &:hover {
+    color: $purple-site;
+    text-decoration: none;
+  }
+}
+
+.font-bigger {
+  font-size: 120%
+}
 
 /* Form */
 .form-wrapper {

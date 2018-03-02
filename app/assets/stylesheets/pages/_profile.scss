@@ -87,9 +87,30 @@ i.grey {
 }
 
 #comments {
-  min-height: 800px;
+  min-height: 100px;
+  max-height: 400px;
+  padding-top: 20px;
+  overflow: scroll;
 }
 
 #phone_number {
   margin-bottom: 55px;
+}
+
+#form {
+  margin-top: 0;
+  border-top: 1px solid rgb(200, 200, 200);
+}
+
+.comment {
+  margin-top: 20px;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.comment-user {
+  display: flex;
+  justify-content: space-between;
 }

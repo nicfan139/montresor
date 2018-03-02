@@ -12,7 +12,7 @@
         <p class="profile-title">Statistics</p>
         <p class="profile-regular">Products: <%= @products.length - @accepted_offers.length %></p>
         <p class="profile-regular">Sales: <%= @sales %></p>
-        <p class="profile-regular">Acceptance rate: <%= (@acceptance_rate * 100).to_i %>%</p>
+        <p class="profile-regular">Acceptance rate: <%= @acceptance_rate %></p>
         <p class="profile-title">Latest products</p>
         <% @products.first(3).each do |product| %>
           <%= link_to product_path(product), class: "profile-link" do %>
@@ -41,6 +41,25 @@
           <p class="profile-lighter bigger"><i class="fas fa-envelope"></i> &nbsp <%= @user.email %></p>
           <p class="profile-lighter bigger" id="phone_number"><i class="fas fa-phone"></i> &nbsp <%= @user.phone_number %></p>
           <div class="white-box" id="comments">
+            <% @comments.each do |comment| %>
+              <div class="comment">
+                <div class="comment-user">
+                  <%= link_to user_path(comment.user), class: "profile-link" do %>
+                    <p class="profile-bold"><%= comment.user.first_name.capitalize %> <%= comment.user.last_name.capitalize %></p>
+                  <% end %>
+                  <p class="profile-regular"><%= comment.created_at.strftime("%m/%d/%Y") %></p>
+                </div>
+                <p class="profile-regular"><%= comment.content.capitalize %></p>
+              </div>
+            <% end %>
+          </div>
+          <div class="white-box" id="form">
+            <%= simple_form_for [@user, @comment] do |f| %>
+              <%= f.input :rating %>
+              <%= f.input :content %>
+              <p id="count-offer">500 characters remaining</p>
+              <%= f.submit class: 'main-btn' %>
+            <% end %>
           </div>
         </div>
       </div>

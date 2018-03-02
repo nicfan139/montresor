@@ -14,5 +14,8 @@ class UsersController < ApplicationController
     # rates
     @sales = @accepted_offers.length
     @acceptance_rate = @sales / (@accepted_offers.length + @sales).to_f
+
+    @comments = Comment.where(page: @user.id).order(created_at: :desc)
+    @comment = Comment.new
   end
 end
