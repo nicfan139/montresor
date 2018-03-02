@@ -1,5 +1,6 @@
 import "bootstrap";
 import "../shared/_counter";
+import "../shared/_arrowUp";
 
 var algoliasearch = require('algoliasearch');
 var algoliasearch = require('algoliasearch/reactnative');
