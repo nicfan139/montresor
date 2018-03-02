@@ -3,7 +3,7 @@
   <div class="row">
     <% user.products.each do |product| %>
     <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="white-box">
+      <div class="white-box-product">
         <%= render '/shared/product_card', product: product %>
       </div>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-xs-12 col-sm-6 col-md-4 text-center">
       <h3><%= state.capitalize %> offers (<%= offers[index].length %>)</h3>
       <% offers[index].each do |offer| %>
-        <div class="white-box" style="width:80%; margin: 30px auto;">
+        <div class="white-box-product" style="width:80%; margin: 30px auto;">
           <p><strong>From:</strong> <%= offer.user.first_name %></p>
           <p><strong>Product:</strong> <%= offer.product.name %></p>
           <p><strong>Description: </strong> <%= offer.description %></p>

@@ -1,5 +1,12 @@
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.8) 0%, rgba(0,36,61,0.7) 50%), url('https://www.cim.ca/sites/default/default/images/banner-montreal.jpg');">
+  <div class="banner-content">
+    <h1>Welcome to Montresor</h1>
+    <p>Buying and selling your stuff just got easier!</p>
+  </div>
+</div>
+
 <div class="wrapper">
-  <h1>Products</h1>
+  <p>Browse for a product, or use the search bar below:</p>
   <div class="group search">
       <input type="text" required id="search-bar">
       <span class="highlight"></span>
@@ -10,7 +17,7 @@
     <div class="row" id="row-products">
       <% @products.each do |product| %>
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="white-box">
+        <div class="white-box-product">
           <%= render '/shared/product_card', product: product %>
         </div>
       </div>
