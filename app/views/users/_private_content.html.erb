@@ -1,0 +1,33 @@
+<h1>My products (<%= user.products.length%>)</h1>
+<div class="products">
+  <div class="row">
+    <% user.products.each do |product| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="white-box">
+        <%= render '/shared/product_card', product: product %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <% ["pending", "accepted", "declined"].each_with_index do |state, index| %>
+    <div class="col-xs-12 col-sm-6 col-md-4 text-center">
+      <h3><%= state.capitalize %> offers (<%= offers[index].length %>)</h3>
+      <% offers[index].each do |offer| %>
+        <div class="white-box" style="width:80%; margin: 30px auto;">
+          <p><strong>From:</strong> <%= offer.user.first_name %></p>
+          <p><strong>Product:</strong> <%= offer.product.name %></p>
+          <p><strong>Description: </strong> <%= offer.description %></p>
+          <% if offer.price %>
+            <p><strong>Price:</strong> <%= offer.price %></p>
+          <% end %>
+          <% if index == 0 %>
+            <%= link_to "Accept", accept_offer_path(offer) %>
+            <%= link_to "Decline", decline_offer_path(offer) %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

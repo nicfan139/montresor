@@ -1,0 +1,95 @@
+.profile-page {
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+.profile-picture-box {
+  height: 300px;
+}
+
+.profile-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.right-col {
+  padding: 0 30px;
+}
+
+.profile-title {
+  margin-top: 30px;
+  color: $purple-site;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  font-size: 22px;
+}
+
+.profile-regular {
+  font-size: 20px;
+}
+
+.profile-lighter {
+  font-weight: 300;
+}
+
+.profile-product-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-bold {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.profile-link {
+  color: rgb(80, 80, 80);
+  &:hover {
+    text-decoration: none;
+    color: $purple-site;
+  }
+}
+
+.profile-name {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.profile-district {
+  font-size: 28px;
+  font-weight: 300;
+  color: $purple-site;
+}
+
+i.purple {
+  color: $purple-site;
+};
+
+i.grey {
+  color: rgb(180, 180, 180);
+}
+
+.bigger {
+  font-size: 28px;
+}
+
+#rating {
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+
+#stars {
+  margin-bottom: 30px;
+  font-size: 24px;
+  margin-top:10px
+}
+
+#comments {
+  min-height: 800px;
+}
+
+#phone_number {
+  margin-bottom: 55px;
+}

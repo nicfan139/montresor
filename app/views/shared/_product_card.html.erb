@@ -1,0 +1,15 @@
+<% if product.photo_url %>
+  <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('<%= cl_image_path product.photo %>'">
+    <p class="category"><%= product.category.upcase %></p>
+  </div>
+<% else %>
+  <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('https://picsum.photos/200/300?image=20')">
+    <p class="category"><%= product.category.upcase %></p>
+  </div>
+<% end %>
+<h3><%= product.name %></h3>
+<div class="product-content">
+  <p><strong>Username:</strong> <%= product.user.first_name %></p>
+  <p><strong>Price:</strong> $<%= product.price %></p>
+</div>
+<%= link_to "See more", product_path(product), url_options = {class: "main-btn product-btn"} %>

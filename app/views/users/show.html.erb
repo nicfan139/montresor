@@ -1,52 +1,52 @@
-<% products = Product.where(user: current_user) %>
-
 <div class="wrapper">
-  <h1>My products (<%=products.length%>)</h1>
-  <div class="products">
+  <div class="profile-page">
     <div class="row">
-      <% products.each do |product| %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="white-box">
-          <% if product.photo_url %>
-            <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('<%= cl_image_path product.photo %>'">
-              <p class="category"><%= product.category.upcase %></p>
-            </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="profile-picture-box">
+          <% if @user.photo_url %>
+            <%= cl_image_tag(@user.photo, gravity: :face, class: "profile-image") %>
           <% else %>
-            <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('https://picsum.photos/200/300?image=20')">
-              <p class="category"><%= product.category.upcase %></p>
-            </div>
+            <%= cl_image_tag("cuh9onauglwqnn7tdvje", gravity: :face, class: "profile-image") %>
           <% end %>
-          <h3><%= product.name %></h3>
-          <div class="product-content">
-            <p><strong>Username:</strong> <%= product.user.first_name %></p>
-            <p><strong>Price:</strong> $<%= product.price %></p>
-          </div>
-          <%= link_to "See more", product_path(product), url_options = {class: "main-btn product-btn"} %>
         </div>
-      </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <% ["pending", "accepted", "declined"].each_with_index do |state, index| %>
-      <div class="col-xs-12 col-sm-6 col-md-4 text-center">
-        <h3><%= state.capitalize %> offers (<%= @offers[index].length %>)</h3>
-        <% @offers[index].each do |offer| %>
-          <div class="white-box" style="width:80%; margin: 30px auto;">
-            <p><strong>From:</strong> <%= offer.user.first_name %></p>
-            <p><strong>Product:</strong> <%= offer.product.name %></p>
-            <p><strong>Description: </strong> <%= offer.description %></p>
-            <% if offer.price %>
-              <p><strong>Price:</strong> <%= offer.price %></p>
-            <% end %>
-            <% if index == 0 %>
-              <%= link_to "Accept", accept_offer_path(offer) %>
-              <%= link_to "Decline", decline_offer_path(offer) %>
-            <% end %>
+        <p class="profile-title">Statistics</p>
+        <p class="profile-regular">Products: <%= @products.length - @accepted_offers.length %></p>
+        <p class="profile-regular">Sales: <%= @sales %></p>
+        <p class="profile-regular">Acceptance rate: <%= @acceptance_rate %></p>
+        <p class="profile-title">Latest products</p>
+        <% @products.first(3).each do |product| %>
+          <%= link_to product_path(product), class: "profile-link" do %>
+            <p class="profile-bold"><%= product.name.capitalize %></p>
+          <% end %>
+          <div class="profile-product-info">
+            <p class="profile-regular"><%= product.category.capitalize %></p>
+            <p class="profile-regular">$<%= product.price %></p>
           </div>
         <% end %>
       </div>
-    <% end %>
-  </div>
+      <div class="col-sm-12 col-md-8">
+        <div class="right-col">
+          <span class="profile-name"><%= @user.first_name %> <%= @user.last_name %> </span>
+          <span class="profile-district"> <i class="fas fa-map-marker-alt"></i> <%= @user.district.capitalize %>, Montreal QC</span>
 
+          <p class="profile-regular bigger" id="rating">Ratings</p>
+          <div id="stars">
+            <i class="fa fa-star fa-fw purple"></i>
+            <i class="fa fa-star fa-fw purple"></i>
+            <i class="fa fa-star fa-fw purple"></i>
+            <i class="fa fa-star fa-fw purple"></i>
+            <i class="fa fa-star fa-fw grey"></i>
+            (4/5)
+          </div>
+          <p class="profile-lighter bigger"><i class="fas fa-envelope"></i> &nbsp <%= @user.email %></p>
+          <p class="profile-lighter bigger" id="phone_number"><i class="fas fa-phone"></i> &nbsp <%= @user.phone_number %></p>
+          <div class="white-box" id="comments">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if @is_current_user %>
+    <%= render 'private_content', user: @user, offers: @offers %>
+  <% end %>
 </div>
