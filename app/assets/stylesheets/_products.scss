@@ -7,7 +7,7 @@ body {
   position: relative;
 }
 
-/* Main Body and Footer Separation */
+/* Main Body and Sections */
 .box-container {
   padding-bottom: 15vh;
 }
@@ -22,6 +22,16 @@ body {
 
 .font-bigger {
   font-size: 120%
+}
+
+.white-box {
+  background-color: white;
+  padding: 25px;
+  margin: 30px 0px 0px 0px;
+  position: relative;
+  h3 {
+    margin-top: 5px;
+  }
 }
 
 /* Form */
@@ -42,7 +52,7 @@ body {
     font-size: 30px;
     font-weight: bold;
     border-radius: 5px;
-    border: 2px solid rgba(155, 155, 155, 0.5);
+    border: 2px solid rgba(155, 155, 155, 0.6);
   }
 }
 
@@ -56,13 +66,19 @@ body {
 
 
 /* Card Elements */
-.white-box {
+.white-box-product {
   background-color: white;
   padding: 25px;
   margin: 30px 0px 0px 0px;
   position: relative;
+  box-shadow: none;
+  transition-property: box-shadow;
+  transition-duration: 0.4s;
   h3 {
     margin-top: 5px;
+  }
+  &:hover {
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,0.5)
   }
 }
 
