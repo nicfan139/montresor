@@ -11,21 +11,7 @@
       <% @products.each do |product| %>
       <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="white-box">
-          <% if product.photo_url %>
-            <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('<%= cl_image_path product.photo %>'">
-              <%= render '/shared/imgcontent', product: product %>
-            </div>
-          <% else %>
-            <div class="product-image" style="background-image:linear-gradient(-225deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('https://picsum.photos/800/500?image=20&gravity=center')">
-              <%= render '/shared/imgcontent', product: product %>
-            </div>
-          <% end %>
-          <h3 class="product-title"><%= product.name %></h3>
-          <div class="product-content">
-            <p><strong>Seller:</strong> <%= product.user.first_name %></p>
-            <p><strong>Price:</strong> $<%= product.price %></p>
-          </div>
-          <%= link_to "See more", product_path(product), url_options = {class: "main-btn product-btn"} %>
+          <%= render '/shared/product_card', product: product %>
         </div>
       </div>
       <% end %>
