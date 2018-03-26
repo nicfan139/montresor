@@ -11,3 +11,6 @@ Project for Le Wagon Bootcamp's "AirBnB Week".
 * jQuery
 * Ruby on Rails
 * PostgreSQL
+* Git
+* Cloudinary
+* Heroku
