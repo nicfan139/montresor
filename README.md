@@ -1,6 +1,6 @@
 # Montresor
 
-Project for Le Wagon Bootcamp's "AirBnB Week".
+Project for Le Wagon Bootcamp's "AirBnB Week". Our objective: build a marketplace-app (like AirBnB) in 5 days.
 
 ## Tools used:
 
