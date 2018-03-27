@@ -14,3 +14,4 @@ Project for Le Wagon Bootcamp's "AirBnB Week". Our objective: build a marketplac
 * Git
 * Cloudinary
 * Heroku
+* Agolia Search API
